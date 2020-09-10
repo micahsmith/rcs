@@ -8,6 +8,7 @@ alias ls='ls --color=auto'
 
 alias l='ls -CF'
 alias la='ls -A'
-alias ll='ls -alF'
+alias ll='ls -alhF'
+alias lh='ls -lhF'
 
 alias pull='git fetch --prune --prune-tags && git merge FETCH_HEAD' 
