@@ -1,14 +1,16 @@
+MAKEFILE_DIR:=$(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
+
 .PHONY: all
 all: .bashrc .nvimrc .tmux.conf bat rg starship tokei
 
 .bashrc:
-	@cp bashrc "${HOME}/.bashrc"
+	@ln -fs "${MAKEFILE_DIR}/bashrc" "${HOME}/.bashrc"
 
 .nvimrc:
-	@cp nvimrc "${HOME}/.nvimrc"
+	@ln -fs "${MAKEFILE_DIR}/nvimrc" "${HOME}/.nvimrc"
 
 .tmux.conf:
-	@cp tmux.conf "${HOME}/.tmux.conf"
+	@ln -fs "${MAKEFILE_DIR}/tmux.conf" "${HOME}/.tmux.conf"
 
 bat: rust
 ifeq ($(strip $(shell test -x $(which bat) && which bat)),)
