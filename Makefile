@@ -1,10 +1,10 @@
 MAKEFILE_DIR:=$(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 
 .PHONY: all .bashrc .bash_aliases .nvimrc .tmux.conf \
-	bat fzf nvim rg rustup shellcheck stack starship \
-	starship.toml tmux tokei
+	bat fzf nvim rg rustup settings.json shellcheck \
+	stack starship starship.toml tmux tokei
 
-all: .bashrc bat fzf nvim rg shellcheck starship tmux tokei
+all: .bashrc bat fzf nvim rg settings.json shellcheck starship tmux tokei
 
 .bashrc: .bash_aliases
 ifneq ($(strip $(SYMLINK)),)
@@ -62,6 +62,14 @@ endif
 rustup:
 ifeq ($(strip $(shell test -x $(which rustup) && which rustup)),)
 	@curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+endif
+
+settings.json:
+ifneq ($(strip $(SYMLINK)),)
+	@ln -fs "${MAKEFILE_DIR}/settings.json" "${HOME}/.config/Code/User/settings.json"
+else
+	@(test -L "${HOME}/.config/Code/User/settings.json" && rm "${HOME}/.config/Code/User/settings.json") || true
+	@cp -f "${MAKEFILE_DIR}/settings.json" "${HOME}/.config/Code/User/settings.json"
 endif
 
 shellcheck: stack

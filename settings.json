@@ -1,0 +1,55 @@
+{
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.cursorBlinking": "solid",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "prettier.printWidth": 100,
+  "prettier.singleQuote": true,
+  "go.autocompleteUnimportedPackages": true,
+  "go.buildOnSave": "off",
+  "go.useLanguageServer": true,
+  "go.formatTool": "goimports",
+  "workbench.colorTheme": "One Dark Pro",
+  "vim.cursorStylePerMode.insert": "line",
+  "vim.cursorStylePerMode.normal": "block",
+  "vim.cursorStylePerMode.replace": "line",
+  "vim.hlsearch": true,
+  "vim.leader": ",",
+  "vim.statusBarColors.normal": "",
+  "vim.useSystemClipboard": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "<space>"],
+      "commands": [":nohl"]
+    },
+    {
+      "before": ["<leader>", "t", "n"],
+      "commands": [":tabnext"]
+    },
+    {
+      "before": ["<leader>", "t", "p"],
+      "commands": [":tabprevious"]
+    },
+    {
+      "before": ["<leader>", "t", "p"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "H"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["<leader>", "g", "d"],
+      "commands": ["editor.action.revealDefinition"]
+    },
+    {
+      "before": ["<leader>", "j", "j"],
+      "commands": ["editor.action.formatDocument"]
+    },
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["workbench.actions.view.problems"]
+    }
+  ]
+}
