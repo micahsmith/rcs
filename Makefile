@@ -1,7 +1,7 @@
 MAKEFILE_DIR:=$(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 
 .PHONY: all
-all: .bashrc .nvimrc .tmux.conf bat rg shellcheck stack starship tokei
+all: .bashrc .nvimrc .tmux.conf bat fzf rg shellcheck stack starship tokei
 
 .bashrc: .bash_aliases
 	@ln -fs "${MAKEFILE_DIR}/bashrc" "${HOME}/.bashrc"
@@ -18,6 +18,12 @@ all: .bashrc .nvimrc .tmux.conf bat rg shellcheck stack starship tokei
 bat: rustup
 ifeq ($(strip $(shell test -x $(which bat) && which bat)),)
 	@cargo install bat
+endif
+
+fzf:
+ifeq ($(strip $(shell test -x $(which fzf) && which fzf)),)
+	@git clone --depth 1 https://github.com/junegunn/fzf.git "${HOME}/.local/fzf"
+	@"${HOME}/.local/fzf/install"
 endif
 
 rg: rustup
