@@ -4,16 +4,36 @@ MAKEFILE_DIR:=$(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 all: .bashrc bat fzf nvim rg shellcheck stack starship tmux tokei
 
 .bashrc: .bash_aliases
+ifneq ($(strip $(SYMLINK)),)
 	@ln -fs "${MAKEFILE_DIR}/bashrc" "${HOME}/.bashrc"
+else
+	@(test -L "${HOME}/.bashrc" && rm "${HOME}/.bashrc") || true
+	@cp -f "${MAKEFILE_DIR}/bashrc" "${HOME}/.bashrc"
+endif
 
 .bash_aliases:
+ifneq ($(strip $(SYMLINK)),)
 	@ln -fs "${MAKEFILE_DIR}/bash_aliases" "${HOME}/.bash_aliases"
+else
+	@(test -L "${HOME}/.bash_aliases" && rm "${HOME}/.bash_aliases") || true
+	@cp -f "${MAKEFILE_DIR}/bash_aliases" "${HOME}/.bash_aliases"
+endif
 
 .nvimrc:
+ifneq ($(strip $(SYMLINK)),)
 	@ln -fs "${MAKEFILE_DIR}/nvimrc" "${HOME}/.nvimrc"
+else
+	@(test -L "${HOME}/.nvimrc" && rm "${HOME}/.nvimrc") || true
+	@cp -f "${MAKEFILE_DIR}/nvimrc" "${HOME}/.nvimrc"
+endif
 
 .tmux.conf:
+ifneq ($(strip $(SYMLINK)),)
 	@ln -fs "${MAKEFILE_DIR}/tmux.conf" "${HOME}/.tmux.conf"
+else
+	@(test -L "${HOME}/.tmux.conf" && rm "${HOME}/.tmux.conf") || true
+	@cp -f "${MAKEFILE_DIR}/tmux.conf" "${HOME}/.tmux.conf"
+endif
 
 bat: rustup
 ifeq ($(strip $(shell test -x $(which bat) && which bat)),)
