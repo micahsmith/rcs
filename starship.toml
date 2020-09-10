@@ -1,0 +1,8 @@
+add_newline = false
+
+[character]
+style_error = "bold dimmed red"
+style_success = "bold dimmed green"
+
+[nodejs]
+style = "bold dimmed green"

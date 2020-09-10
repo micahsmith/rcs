@@ -1,7 +1,10 @@
 MAKEFILE_DIR:=$(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 
-.PHONY: all
-all: .bashrc bat fzf nvim rg shellcheck stack starship tmux tokei
+.PHONY: all .bashrc .bash_aliases .nvimrc .tmux.conf \
+	bat fzf nvim rg rustup shellcheck stack starship \
+	starship.toml tmux tokei
+
+all: .bashrc bat fzf nvim rg shellcheck starship tmux tokei
 
 .bashrc: .bash_aliases
 ifneq ($(strip $(SYMLINK)),)
@@ -72,9 +75,17 @@ ifeq ($(strip $(shell test -x $(which stack) && which stack)),)
 	@curl --proto '=https' --tlsv1.2 -sSL https://get.haskellstack.org/ | sh
 endif
 
-starship: rustup
+starship: rustup starship.toml
 ifeq ($(strip $(shell test -x $(which starship) && which starship)),)
 	@cargo install starship
+endif
+
+starship.toml:
+ifneq ($(strip $(SYMLINK)),)
+	@ln -fs "${MAKEFILE_DIR}/starship.toml" "${HOME}/.config/starship.toml"
+else
+	@(test -L "${HOME}/.config/starship.toml" && rm "${HOME}/.config/starship.toml") || true
+	@cp -f "${MAKEFILE_DIR}/starship.toml" "${HOME}/.config/starship.toml"
 endif
 
 tmux: .tmux.conf
