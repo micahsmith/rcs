@@ -62,6 +62,7 @@ endif
 rustup:
 ifeq ($(strip $(shell test -x $(which rustup) && which rustup)),)
 	@curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	@source "${HOME}/.cargo/env"
 endif
 
 settings.json:
@@ -69,6 +70,7 @@ ifneq ($(strip $(SYMLINK)),)
 	@ln -fs "${MAKEFILE_DIR}/settings.json" "${HOME}/.config/Code/User/settings.json"
 else
 	@(test -L "${HOME}/.config/Code/User/settings.json" && rm "${HOME}/.config/Code/User/settings.json") || true
+	@mkdir -p "${HOME}/.config/Code/User"
 	@cp -f "${MAKEFILE_DIR}/settings.json" "${HOME}/.config/Code/User/settings.json"
 endif
 
@@ -93,6 +95,7 @@ ifneq ($(strip $(SYMLINK)),)
 	@ln -fs "${MAKEFILE_DIR}/starship.toml" "${HOME}/.config/starship.toml"
 else
 	@(test -L "${HOME}/.config/starship.toml" && rm "${HOME}/.config/starship.toml") || true
+	@mkdir -p "${HOME}/.config"
 	@cp -f "${MAKEFILE_DIR}/starship.toml" "${HOME}/.config/starship.toml"
 endif
 
