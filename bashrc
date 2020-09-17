@@ -18,10 +18,10 @@ shopt -s histappend
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 [ -s ~/.bash_aliases ] && source ~/.bash_aliases
 
-export EDITOR=/usr/bin/nvim
+export EDITOR=/snap/bin/nvim
 export GOPATH="${HOME}/.local/go"
 export NVM_DIR="${HOME}/.nvm"
-export PATH="${PATH}:${HOME}/.cargo/bin:/usr/local/go/bin:${GOPATH}/bin"
+export PATH="${PATH}:${HOME}/.cargo/bin:/usr/local/go/bin:${GOPATH}/bin:${HOME}/.local/bin"
 
 # completion
 
