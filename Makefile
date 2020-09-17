@@ -4,7 +4,7 @@ MAKEFILE_DIR:=$(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 	bat fzf nvim rg rustup settings.json shellcheck \
 	stack starship starship.toml tmux tokei
 
-all: .bashrc bat fzf nvim rg settings.json shellcheck starship tmux tokei
+all: .bashrc bat exa fzf nvim rg settings.json shellcheck starship tmux tokei
 
 .bashrc: .bash_aliases
 ifneq ($(strip $(SYMLINK)),)
@@ -43,6 +43,11 @@ ifeq ($(strip $(shell test -x $(which bat) && which bat)),)
 	@cargo install bat
 endif
 
+exa: rustup
+ifeq ($(strip $(shell test -x $(which exa) && which exa)),)
+	@cargo install exa
+endif
+
 fzf:
 ifeq ($(strip $(shell test -x $(which fzf) && which fzf)),)
 	@git clone --depth 1 https://github.com/junegunn/fzf.git "${HOME}/.local/fzf"
@@ -52,6 +57,8 @@ endif
 nvim: .nvimrc
 ifeq ($(strip $(shell test -x $(which nvim) && which nvim)),)
 	@sudo snap install --beta nvim --classic
+	@mkdir -p "${HOME}/.config/nvim"
+	@ln -fs "${HOME}/.nvimrc" "${HOME}/.config/nvim/init.vim"
 endif
 
 rg: rustup
