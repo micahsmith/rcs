@@ -62,7 +62,6 @@ endif
 rustup:
 ifeq ($(strip $(shell test -x $(which rustup) && which rustup)),)
 	@curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-	@source "${HOME}/.cargo/env"
 endif
 
 settings.json:

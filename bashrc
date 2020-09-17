@@ -21,7 +21,7 @@ shopt -s histappend
 export EDITOR=/usr/bin/nvim
 export GOPATH="${HOME}/.local/go"
 export NVM_DIR="${HOME}/.nvm"
-export PATH="${PATH}:/usr/local/go/bin:${GOPATH}/bin"
+export PATH="${PATH}:${HOME}/.cargo/bin:/usr/local/go/bin:${GOPATH}/bin"
 
 # completion
 
