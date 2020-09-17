@@ -59,6 +59,8 @@ ifeq ($(strip $(shell test -x $(which nvim) && which nvim)),)
 	@sudo snap install --beta nvim --classic
 	@mkdir -p "${HOME}/.config/nvim"
 	@ln -fs "${HOME}/.nvimrc" "${HOME}/.config/nvim/init.vim"
+	@curl -fLo "${HOME}/.local/share/nvim/site/autoload/plug.vim" --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
 rg: rustup
