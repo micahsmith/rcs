@@ -5,7 +5,6 @@ Plug 'bling/vim-airline'
 Plug 'dense-analysis/ale'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'relastle/bluewery.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/deoplete.nvim'
@@ -27,9 +26,6 @@ call plug#end()
 if !exists("g:syntax_on")
 	syntax enable
 endif
-
-colorscheme bluewery
-set termguicolors
 
 filetype plugin indent on
 
