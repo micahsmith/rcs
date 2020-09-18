@@ -5,6 +5,7 @@ Plug 'bling/vim-airline'
 Plug 'dense-analysis/ale'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'OmniSharp/omnisharp-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/deoplete.nvim'
@@ -79,6 +80,8 @@ inoremap <silent><expr><tab> pumvisible() ? "\<C-n>" : "\<tab>"
 inoremap <silent><expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
 
 let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 " Ale
 let g:ale_completion_autoimport = 1
@@ -98,6 +101,7 @@ let g:ale_fixers = {
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {
     \ 'bash': ['shellcheck'],
+	\ 'cs': ['OmniSharp'],
     \ 'elixir': ['credo'],
     \ 'go': ['golangci-lint', 'gopls'],
     \ 'javascript': ['eslint', 'tsserver'],
@@ -130,9 +134,9 @@ noremap <leader>gf :GFiles<CR>
 noremap <leader>rg :Rg<space>
 noremap <leader>nt :NERDTreeToggle<CR>
 noremap <leader>ss <C-W><C-W>
-noremap <leader>te :tabedit<space>
-noremap <leader>tn :tabnext<CR>
-noremap <leader>tp :tabprevious<CR>
+noremap <leader>e :edit<space>
+noremap <leader>bn :bnext<CR>
+noremap <leader>bp :bprevious<CR>
 
 " Regex mappings
 nnoremap / /\v
@@ -145,5 +149,13 @@ set hidden
 nnoremap <silent><leader>H :ALEHover<CR>
 nnoremap <silent><leader>jj :ALEFix<CR>
 nnoremap <silent><leader>gr :ALEFindReferences<CR>
-nnoremap <silent><leader>gd :ALEGoToDefinition -tab<CR>
-nnoremap <silent><leader>gt :ALEGoToTypeDefinition -tab<CR>
+nnoremap <silent><leader>gd :ALEGoToDefinition<CR>
+nnoremap <silent><leader>gt :ALEGoToTypeDefinition<CR>
+
+" OmniSharp mappings
+
+autocmd FileType cs nnoremap <buffer><silent><leader>H :OmniSharpDocumentation<CR>
+autocmd FileType cs nnoremap <buffer><silent><leader>jj :OmniSharpCodeFormat<CR>
+autocmd FileType cs nnoremap <buffer><silent><leader>gr :OmniSharpFindUsages<CR>
+autocmd FileType cs nnoremap <buffer><silent><leader>gd :OmniSharpGotoDefinition<CR>
+autocmd FileType cs nnoremap <buffer><silent><leader>gt :OmniSharpTypeLookup<CR>
