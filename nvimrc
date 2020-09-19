@@ -3,6 +3,7 @@ call plug#begin('~/.vim/vimplugs')
 " Quality of life 
 Plug 'bling/vim-airline'
 Plug 'dense-analysis/ale'
+Plug 'fneu/breezy'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'OmniSharp/omnisharp-vim'
@@ -27,6 +28,9 @@ call plug#end()
 if !exists("g:syntax_on")
 	syntax enable
 endif
+
+set termguicolors
+colorscheme breezy
 
 filetype plugin indent on
 
@@ -79,6 +83,7 @@ set gdefault
 inoremap <silent><expr><tab> pumvisible() ? "\<C-n>" : "\<tab>"
 inoremap <silent><expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
 
+let g:airline_theme='breezy'
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
