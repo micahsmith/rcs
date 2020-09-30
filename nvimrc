@@ -13,6 +13,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Bash
 Plug 'kovetskiy/vim-bash'
