@@ -3,10 +3,10 @@ call plug#begin('~/.vim/vimplugs')
 " Quality of life 
 Plug 'bling/vim-airline'
 Plug 'dense-analysis/ale'
-Plug 'fneu/breezy'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'OmniSharp/omnisharp-vim'
+Plug 'relastle/bluewery.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/deoplete.nvim'
@@ -31,7 +31,7 @@ if !exists("g:syntax_on")
 endif
 
 set termguicolors
-colorscheme breezy
+colorscheme bluewery
 
 filetype plugin indent on
 
