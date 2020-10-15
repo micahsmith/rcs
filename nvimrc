@@ -43,13 +43,9 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
-au Filetype javascript,typescript set tabstop=2
-au Filetype javascript,typescript set softtabstop=2
-au Filetype javascript,typescript set shiftwidth=2
-
-au Filetype yaml set tabstop=2
-au Filetype yaml set softtabstop=2
-au Filetype yaml set shiftwidth=2
+au Filetype cs,javascript,typescript,yaml set tabstop=2
+au Filetype cs,javascript,typescript,yaml set softtabstop=2
+au Filetype cs,javascript,typescript,yaml set shiftwidth=2
 
 set autoindent
 set expandtab
@@ -84,7 +80,7 @@ set gdefault
 inoremap <silent><expr><tab> pumvisible() ? "\<C-n>" : "\<tab>"
 inoremap <silent><expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
 
-let g:airline_theme='breezy'
+let g:airline_theme='bluewery'
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
