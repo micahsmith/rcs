@@ -96,6 +96,7 @@ let g:ale_fixers = {
     \ 'json': ['fixjson'],
     \ 'python': ['black', 'isort'],
     \ 'rust': ['rustfmt'],
+    \ 'terraform': ['terraform'],
     \ 'typescript': ['eslint'],
     \ 'typescriptreact': ['eslint'],
     \ 'yaml': ['prettier']
