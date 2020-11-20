@@ -93,7 +93,7 @@ let g:ale_fixers = {
     \ 'markdown': ['prettier'],
     \ 'javascript': ['eslint'],
     \ 'javascript.jsx': ['eslint'],
-    \ 'json': ['fixjson'],
+    \ 'json': ['prettier'],
     \ 'python': ['black', 'isort'],
     \ 'rust': ['rustfmt'],
     \ 'terraform': ['terraform'],
