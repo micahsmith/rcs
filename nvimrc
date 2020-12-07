@@ -43,9 +43,9 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
-au Filetype cs,javascript,typescript,yaml set tabstop=2
-au Filetype cs,javascript,typescript,yaml set softtabstop=2
-au Filetype cs,javascript,typescript,yaml set shiftwidth=2
+au Filetype cs,javascript,typescript,xml,yaml set tabstop=2
+au Filetype cs,javascript,typescript,xml,yaml set softtabstop=2
+au Filetype cs,javascript,typescript,xml,yaml set shiftwidth=2
 
 set autoindent
 set expandtab
