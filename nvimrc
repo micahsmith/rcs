@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/vimplugs')
 
-" Quality of life 
+" Quality of life
 Plug 'bling/vim-airline'
 Plug 'dense-analysis/ale'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -39,13 +39,9 @@ set background=dark
 set nocompatible
 set modelines=0
 
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-
-au Filetype cs,javascript,typescript,xml,yaml set tabstop=2
-au Filetype cs,javascript,typescript,xml,yaml set softtabstop=2
-au Filetype cs,javascript,typescript,xml,yaml set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 
 set autoindent
 set expandtab
@@ -89,7 +85,8 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:ale_completion_autoimport = 1
 let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-	\ 'go': ['gofmt', 'goimports'],
+    \ 'html': ['prettier'],
+    \ 'go': ['gofmt', 'goimports'],
     \ 'markdown': ['prettier'],
     \ 'javascript': ['eslint'],
     \ 'javascript.jsx': ['eslint'],
@@ -97,7 +94,7 @@ let g:ale_fixers = {
     \ 'python': ['black', 'isort'],
     \ 'rust': ['rustfmt'],
     \ 'terraform': ['terraform'],
-    \ 'typescript': ['eslint'],
+    \ 'typescript': ['eslint', 'prettier'],
     \ 'typescriptreact': ['eslint'],
     \ 'yaml': ['prettier']
     \ }
