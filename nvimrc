@@ -13,6 +13,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
+Plug 'wlangstroth/vim-racket'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Bash
@@ -101,7 +102,7 @@ let g:ale_fixers = {
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {
     \ 'bash': ['shellcheck'],
-	\ 'cs': ['OmniSharp'],
+    \ 'cs': ['OmniSharp'],
     \ 'elixir': ['credo'],
     \ 'go': ['golangci-lint', 'gopls'],
     \ 'javascript': ['eslint', 'tsserver'],
@@ -156,6 +157,7 @@ nnoremap <silent><leader>gt :ALEGoToTypeDefinition<CR>
 
 autocmd FileType cs nnoremap <buffer><silent><leader>H :OmniSharpDocumentation<CR>
 autocmd FileType cs nnoremap <buffer><silent><leader>jj :OmniSharpCodeFormat<CR>
-autocmd FileType cs nnoremap <buffer><silent><leader>gr :OmniSharpFindUsages<CR>
 autocmd FileType cs nnoremap <buffer><silent><leader>gd :OmniSharpGotoDefinition<CR>
+autocmd FileType cs nnoremap <buffer><silent><leader>gi :OmniSharpFindImplementations<CR>
 autocmd FileType cs nnoremap <buffer><silent><leader>gt :OmniSharpTypeLookup<CR>
+autocmd FileType cs nnoremap <buffer><silent><leader>gu :OmniSharpFindUsages<CR>
