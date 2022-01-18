@@ -1,0 +1,44 @@
+" general
+set hlsearch
+set incsearch
+set number
+set relativenumber
+set scrolloff=5
+set showmode
+
+" idea
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+" mappings
+let mapleader = ","
+
+" debug
+nnoremap <leader>ar :action Run<cr>
+nnoremap <leader>ad :action Debug<cr>
+nnoremap <leader>ab :action ToggleLineBreakpoint<cr>
+
+" navigation
+nnoremap <leader>mp :action MethodUp<cr>
+nnoremap <leader>mn :action MethodDown<cr>
+nnoremap <leader>bn :action NextTab<cr>
+nnoremap <leader>bp :action PreviousTab<cr>
+nnoremap <leader>bs :action FileStructurePopup<cr>
+nnoremap <leader>ff :action SearchEverywhere<cr>
+
+nnoremap <leader>gh :action QuickJavaDoc<cr>
+nnoremap <leader>gd :action GotoDeclaration<cr>
+nnoremap <leader>gs :action GotoSuperMethod<cr>
+nnoremap <leader>gi :action GotoImplementation<cr>
+nnoremap <leader>gt :action GotoTest<cr>
+nnoremap <leader>gu :action FindUsages<cr>
+nnoremap <leader>gz :action ToggleDistractionFreeMode<cr>
+
+nnoremap <leader>jj :action ReformatCode<cr>
+nnoremap <leader>rn :action RenameElement<cr>
+
+" regex
+nnoremap / /\v
+vnoremap / /\v
+nnoremap <leader><space> :noh<cr>
