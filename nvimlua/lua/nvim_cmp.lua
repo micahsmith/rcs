@@ -1,13 +1,6 @@
-local ok, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
+local ok, cmp = pcall(require, 'cmp')
+if not ok then return end
 
-if not ok then
-  return
-end
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-cmp_lsp.update_capabilities(capabilities)
-
-local cmp = require('cmp')
 cmp.setup {
     snippet = {expand = function(args) vim.fn["vsnip#anonymous"](args.body) end},
     mapping = {

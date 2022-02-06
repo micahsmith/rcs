@@ -1,13 +1,16 @@
 local ok, packer = pcall(require, 'packer')
-
 if not ok then return end
 
 packer.startup(function()
     -- packer
     use 'wbthomason/packer.nvim'
 
+    -- plenary
+    use 'nvim-lua/plenary.nvim'
+
     -- themes
-    use {'relastle/bluewery.vim', config = function() vim.cmd('colorscheme bluewery') end}
+    use 'relastle/bluewery.vim'
+    use 'EdenEast/nightfox.nvim'
 
     -- lsp support
     use 'neovim/nvim-lspconfig'
@@ -42,17 +45,19 @@ packer.startup(function()
     }
 
     -- ui
-    -- use {
-    --     'nvim-lualine/lualine.nvim',
-    --     config = function() require('lualine').setup({}) end,
-    --     requires = {'kyazdani42/nvim-web-devicons', opt = true}
-    -- }
+    use {
+        'nvim-lualine/lualine.nvim',
+        config = function() require('lualine').setup({
+          options = { theme = 'nightfox' }
+        }) end,
+        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    }
     -- use {'glepnir/lspsaga.nvim', config = function() require('saga').init_lsp_saga() end}
 
     -- git
     use {
         'lewis6991/gitsigns.nvim',
-        config = function() require('gitsigns').setup{} end,
+        config = function() require('gitsigns').setup({}) end,
         requires = {'nvim-lua/plenary.nvim'},
         tag = 'release'
     }
@@ -60,3 +65,5 @@ packer.startup(function()
     -- java
     use 'mfussenegger/nvim-jdtls'
 end)
+
+vim.cmd[[colorscheme nightfox]]
