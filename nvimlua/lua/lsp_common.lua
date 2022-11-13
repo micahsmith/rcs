@@ -2,13 +2,11 @@ local M = {}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local ok, cmp = pcall(require, 'cmp_nvim_lsp')
-if ok then capabilities = cmp.update_capabilities(capabilities) end
+if ok then capabilities = cmp.default_capabilities(capabilities) end
 
 M.capabilities = capabilities
 
 local on_attach = function(client, bufnr)
-    --print(client.name)
-
     local function map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local opts = {noremap = true, silent = true}
 
@@ -22,7 +20,7 @@ local on_attach = function(client, bufnr)
     map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
     map('n', '<leader>gn', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', opts)
     map('n', '<leader>gp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', opts)
-    map('n', '<leader>jj', '<cmd>lua vim.lsp.buf.formatting()<cr>', opts)
+    map('n', '<leader>jj', '<cmd>lua vim.lsp.buf.format()<cr>', opts)
 end
 
 M.on_attach = on_attach

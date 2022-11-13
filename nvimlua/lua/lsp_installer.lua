@@ -8,17 +8,53 @@ local servers = {
     'rust_analyzer', 'solargraph', 'sumneko_lua', 'svelte', 'sqlls', 'tsserver', 'yamlls'
 }
 
+local eslint = {
+    lintCommand = 'eslint_d -f unix --stdin --stdin-filename ${INPUT}',
+    lintStdin = true,
+    lintFormats = {'%f:%l:%c: %m'},
+    lintIgnoreExitCode = true,
+    formatCommand = 'eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}',
+    formatStdin = true
+}
+
 local settings = {
     efm = {
         init_options = {documentFormatting = true},
-        filetypes = {'lua', 'java'},
+        filetypes = {
+            'lua', 'java', 'python', 'ruby', 'sh', 'javascript', 'javascriptreact',
+            'javascript.jsx', 'typescript', 'typescript.tsx', 'typescriptreact'
+        },
         settings = {
             rootMarkers = {'.git/'},
             languages = {
                 -- https://github.com/Koihik/LuaFormatter
                 lua = {{formatCommand = 'lua-format -i --column-limit=100', formatStdin = true}},
                 -- https://github.com/jhipster/prettier-java
-                java = {{formatCommand = 'prettier --parser=java --print-width=100', formatStdin = true}}
+                java = {
+                    {formatCommand = 'prettier --parser=java --print-width=100', formatStdin = true}
+                },
+                -- https://github.com/psf/black
+                python = {{formatCommand = 'python3 -m black --quiet -', formatStdin = true}},
+                -- https://github.com/prettier/plugin-ruby
+                ruby = {
+                    {formatCommand = 'prettier --parser=ruby --print-width=100', formatStdin = true}
+                },
+                -- https://github.com/koalaman/shellcheck
+                sh = {
+                    {
+                        lintCommand = 'shellcheck -f gcc -x',
+                        lintSource = 'shellcheck',
+                        lintFormats = {
+                            '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'
+                        }
+                    }, {formatCommand = 'shfmt -ci -s -bn', formatStdin = true}
+                },
+                javascript = {eslint},
+                javascriptreact = {eslint},
+                ['javascript.jsx'] = {eslint},
+                typescript = {eslint},
+                ['typescript.tsx'] = {eslint},
+                typescriptreact = {eslint}
             }
         }
     },
@@ -28,9 +64,9 @@ local settings = {
                 diagnostics = {globals = {'require', 'vim'}},
                 workspace = {
                     library = {
-                        vim.api.nvim_get_runtime_file("", true),
-                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
+                        vim.api.nvim_get_runtime_file('', true),
+                        [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                        [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
                     }
                 }
             }

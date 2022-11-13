@@ -55,12 +55,12 @@ packer.startup(function()
     -- use {'glepnir/lspsaga.nvim', config = function() require('saga').init_lsp_saga() end}
 
     -- git
-    use {
-        'lewis6991/gitsigns.nvim',
-        config = function() require('gitsigns').setup({}) end,
-        requires = {'nvim-lua/plenary.nvim'},
-        tag = 'release'
-    }
+    -- use {
+    --     'lewis6991/gitsigns.nvim',
+    --     config = function() require('gitsigns').setup({}) end,
+    --     requires = {'nvim-lua/plenary.nvim'},
+    --     tag = 'release'
+    -- }
 
     -- java
     use 'mfussenegger/nvim-jdtls'
