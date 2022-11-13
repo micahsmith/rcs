@@ -7,20 +7,19 @@ if ok then capabilities = cmp.default_capabilities(capabilities) end
 M.capabilities = capabilities
 
 local on_attach = function(client, bufnr)
-    local function map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local opts = {noremap = true, silent = true}
+    local opts = {buffer = bufnr, noremap = true, silent = true}
 
-    map('n', '<leader>ga', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-    map('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-    map('n', '<leader>ge', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-    map('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-    map('n', '<leader>gh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-    map('n', '<leader>gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-    map('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-    map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-    map('n', '<leader>gn', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', opts)
-    map('n', '<leader>gp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', opts)
-    map('n', '<leader>jj', '<cmd>lua vim.lsp.buf.format()<cr>', opts)
+    vim.keymap.set('n', '<leader>ga', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', '<leader>ge', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', '<leader>gh', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader>gs', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<leader>gn', vim.diagnostic.goto_next, opts)
+    vim.keymap.set('n', '<leader>gp', vim.diagnostic.goto_prev, opts)
+    vim.keymap.set('n', '<leader>jj', function() vim.lsp.buf.format {async = true} end, opts)
 end
 
 M.on_attach = on_attach

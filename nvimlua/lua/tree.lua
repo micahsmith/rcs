@@ -6,14 +6,13 @@ nvim_tree.setup {
     hijack_netrw = true,
     open_on_setup = false,
     ignore_ft_on_setup = {},
-    auto_close = true,
     hijack_cursor = true,
+    hijack_directories = {enable = true, auto_open = true},
     update_cwd = true,
-    update_to_buf_dir = {enable = true, auto_open = true},
     diagnostics = {enable = true},
     update_focused_file = {enable = false, update_cwd = false, ignore_list = {}},
     git = {enable = true, ignore = true, timeout = 500},
-    view = {auto_resize = true}
+    view = {adaptive_size = true}
 }
 
 local map = vim.api.nvim_set_keymap
