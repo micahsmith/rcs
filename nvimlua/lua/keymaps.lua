@@ -1,18 +1,21 @@
 vim.g.mapleader = ","
 
-local map = vim.api.nvim_set_keymap
-local opts = {noremap = true}
+local nmap = function(lhs, rhs, desc)
+  local opts = {noremap = true}
+  if desc then opts.desc = desc end
+  vim.api.nvim_set_keymap("n", lhs, rhs, opts)
+end
 
 -- navigation
-map('n', '<leader>e', ':edit<space>', opts)
-map('n', '<leader>bn', ':bnext<cr>', opts)
-map('n', '<leader>bp', ':bprevious<cr>', opts)
-map('n', '<leader>sh', '<c-w>h', opts)
-map('n', '<leader>sj', '<c-w>j', opts)
-map('n', '<leader>sk', '<c-w>k', opts)
-map('n', '<leader>sl', '<c-w>l', opts)
+nmap("<leader>e", ":edit<space>", "edit buffer")
+nmap("<leader>bd", ":bdelete<cr>", "delete buffer")
+nmap("<leader>bn", ":bnext<cr>", "next buffer")
+nmap("<leader>bp", ":bprevious<cr>", "previous buffer")
+nmap("<leader>sh", "<c-w>h", "focus left pane")
+nmap("<leader>sj", "<c-w>j", "focus lower pane")
+nmap("<leader>sk", "<c-w>k", "focus upper pane")
+nmap("<leader>sl", "<c-w>l", "focus right pane")
 
 -- regex
-map('n', '/', '/\\v', {noremap = true})
-map('v', '/', '/\\v', {noremap = true})
-map('n', '<leader><space>', ':noh<cr>', {noremap = true})
+nmap("<leader><space>", ":noh<cr>", "clear highlights")
+vim.api.nvim_set_keymap("n", "/", "/\\v", {noremap = true, desc = "search buffer"})

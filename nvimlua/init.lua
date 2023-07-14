@@ -1,6 +1,9 @@
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
-require('settings')
-require('plugins')
 require('keymaps')
+require('settings')
+
+require('lazynvim')
+require('lazy').setup('plugins', {
+  defaults = {
+    lazy = true
+  }
+})
