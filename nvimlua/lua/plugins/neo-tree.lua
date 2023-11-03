@@ -1,10 +1,8 @@
-vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
 local M = { 'nvim-neo-tree/neo-tree.nvim' }
 
-M.branch = 'v2.x'
+M.branch = 'v3.x'
 M.cmd = 'Neotree'
-M.lazy = true
+M.lazy = false
 
 M.dependencies = {
   'nvim-lua/plenary.nvim',
@@ -15,5 +13,14 @@ M.dependencies = {
 M.keys = {
   { '<leader>nt', '<cmd>Neotree<cr>', desc = 'open file tree' },
 }
+
+M.opts = function()
+  return {
+    filesystem = {
+       hijack_netrw_behavior = "open_default",
+       use_libuv_file_watcher = true
+    }
+  }
+end
 
 return M
