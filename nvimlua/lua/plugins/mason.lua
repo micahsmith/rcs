@@ -1,6 +1,6 @@
-local M = { 'williamboman/mason.nvim' }
+local M = { "williamboman/mason.nvim" }
 
-M.build = ':MasonUpdate'
+M.build = ":MasonUpdate"
 M.lazy = true
 
 M.opts = {}
