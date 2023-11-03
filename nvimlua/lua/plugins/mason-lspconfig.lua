@@ -10,8 +10,10 @@ M.dependencies = {
 M.opts = {
   ensure_installed = {
     "bashls",
+    "cssls",
     "dockerls",
     "eslint",
+    "elixirls",
     "gopls",
     "html",
     "jsonls",
