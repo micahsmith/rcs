@@ -53,7 +53,6 @@ M.config = function()
       nmap('<leader>rn', vim.lsp.buf.rename, 'rename')
       nmap('<leader>gn', vim.diagnostic.goto_next, 'goto next diagnostic')
       nmap('<leader>gp', vim.diagnostic.goto_prev, 'goto previous diagnostic')
-      nmap('<leader>jj', function() vim.lsp.buf.format { async = true } end, 'format')
       nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, 'add workspace folder')
       nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, 'remove workspace folder')
       nmap('<leader>wl', function()
@@ -67,6 +66,5 @@ M.dependencies = {
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
 }
-
 
 return M

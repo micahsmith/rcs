@@ -1,8 +1,9 @@
 local M = { 'nvim-telescope/telescope.nvim' }
 
 M.cmd = { 'Telescope' }
-M.dependencies = { 'nvim-lua/plenary.nvim' }
 M.lazy = true
+
+M.dependencies = { 'nvim-lua/plenary.nvim' }
 
 M.keys = {
   { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'find files' },
