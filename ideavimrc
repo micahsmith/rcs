@@ -27,6 +27,7 @@ nnoremap <leader>bp :action PreviousTab<cr>
 nnoremap <leader>bs :action FileStructurePopup<cr>
 nnoremap <leader>ff :action SearchEverywhere<cr>
 
+nnoremap <leader>ga :action ShowIntentionActions<cr>
 nnoremap <leader>gh :action QuickJavaDoc<cr>
 nnoremap <leader>gd :action GotoDeclaration<cr>
 nnoremap <leader>gs :action GotoSuperMethod<cr>
