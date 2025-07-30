@@ -1,10 +1,12 @@
 MAKEFILE_DIR:=$(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 
 .PHONY: all .bashrc .bash_aliases .nvimrc .tmux.conf \
-	bat fzf nvim rg rustup settings.json shellcheck \
-	stack starship starship.toml tmux tokei
+	alacritty-config bat fzf nvim rg rustup settings.json \
+	shellcheck stack starship starship.toml tmux tokei zellij
 
-all: .bashrc .zshrc bat exa fzf nvim rg settings.json shellcheck starship tmux tokei zellij
+all: .bashrc .zshrc alacritty-config bat exa fzf \
+	nvim rg settings.json shellcheck starship tmux \
+	tokei zellij
 
 .bashrc: .bash_aliases
 ifneq ($(strip $(SYMLINK)),)
@@ -36,6 +38,14 @@ ifneq ($(strip $(SYMLINK)),)
 else
 	@(test -L "${HOME}/.tmux.conf" && rm "${HOME}/.tmux.conf") || true
 	@cp -f "${MAKEFILE_DIR}/tmux.conf" "${HOME}/.tmux.conf"
+endif
+
+alacritty-config:
+ifneq ($(strip $(SYMLINK)),)
+	@ln -fs "${MAKEFILE_DIR}/alacritty" "${HOME}/.config/alacritty"
+else
+	@(test -L "${HOME}/.config/alacritty" && rm "${HOME}/.config/alacritty") || true
+	@cp -r "${MAKEFILE_DIR}/alacritty" "${HOME}/.config"
 endif
 
 bat: rustup
