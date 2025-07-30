@@ -3,17 +3,21 @@ source $ZSH/oh-my-zsh.sh
 
 export FZF_BASE="${HOME}/.local/fzf"
 export GOPATH="${HOME}/.local/go"
-export NVM_DIR="${HOME}/.nvm"
 export PATH="${HOME}/.cargo/bin:/usr/local/go/bin:${GOPATH}/bin:${HOME}/.local/bin:${PATH}"
 
-zstyle ':omz:update' mode reminder
-zstyle ':omz:update' frequency 14
 
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
   export EDITOR='nvim'
 fi
+
+export NVM_DIR="${HOME}/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+
+zstyle ':omz:update' mode reminder
+zstyle ':omz:update' frequency 14
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -22,14 +26,6 @@ plugins=(
   fzf
   git
 )
-
-
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
 
 set_prompt() {
   RESTORE='%f%b'
