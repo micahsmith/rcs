@@ -1,0 +1,17 @@
+theme "nightfox"
+
+default_layout "owl"
+
+scroll_buffer_size 100000
+
+layout_dir "./layouts/"
+
+show_startup_tips false
+
+ui {
+  pane_frames {
+    rounded_corners true
+    hide_session_name false
+  }
+}
+

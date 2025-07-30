@@ -117,17 +117,17 @@ ifeq ($(strip $(shell test -x $(which tokei) && which tokei)),)
 	@cargo install tokei
 endif
 
-zellij: zellij.config.kdl
+zellij: zellij-config
 ifeq ($(strip $(shell test -x $(which zellij) && which zellij)),)
 	@cargo install --locked zellij
 endif
 
-zellij.config.kdl:
+zellij-config:
 ifneq ($(strip $(SYMLINK)),)
-	@ln -fs "${MAKEFILE_DIR}/zellij.config.kdl" "${HOME}/.config/zellij/config.kdl"
+	@ln -fs "${MAKEFILE_DIR}/zellij" "${HOME}/.config/zellij"
 else
-	@(test -L "${HOME}/.config/zellij/config.kdl" && rm "${HOME}/.config/zellij/config.kdl") || true
-	@cp -f "${MAKEFILE_DIR}/zellig.config.kdl" "${HOME}/.config/zellij/config.kdl
+	@(test -L "${HOME}/.config/zellij" && rm "${HOME}/.config/zellij") || true
+	@cp -r "${MAKEFILE_DIR}/zellij" "${HOME}/.config/zellij"
 endif
 
 .zshrc: .zsh_aliases
