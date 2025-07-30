@@ -4,7 +4,7 @@ MAKEFILE_DIR:=$(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 	bat fzf nvim rg rustup settings.json shellcheck \
 	stack starship starship.toml tmux tokei
 
-all: .bashrc bat exa fzf nvim rg settings.json shellcheck starship tmux tokei .zshrc
+all: .bashrc .zshrc bat exa fzf nvim rg settings.json shellcheck starship tmux tokei zellij
 
 .bashrc: .bash_aliases
 ifneq ($(strip $(SYMLINK)),)
@@ -115,6 +115,19 @@ endif
 tokei: rustup
 ifeq ($(strip $(shell test -x $(which tokei) && which tokei)),)
 	@cargo install tokei
+endif
+
+zellij: zellij.config.kdl
+ifeq ($(strip $(shell test -x $(which zellij) && which zellij)),)
+	@cargo install --locked zellij
+endif
+
+zellij.config.kdl:
+ifneq ($(strip $(SYMLINK)),)
+	@ln -fs "${MAKEFILE_DIR}/zellij.config.kdl" "${HOME}/.config/zellij/config.kdl"
+else
+	@(test -L "${HOME}/.config/zellij/config.kdl" && rm "${HOME}/.config/zellij/config.kdl") || true
+	@cp -f "${MAKEFILE_DIR}/zellig.config.kdl" "${HOME}/.config/zellij/config.kdl
 endif
 
 .zshrc: .zsh_aliases
