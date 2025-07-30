@@ -4,7 +4,7 @@ MAKEFILE_DIR:=$(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 	bat fzf nvim rg rustup settings.json shellcheck \
 	stack starship starship.toml tmux tokei
 
-all: .bashrc bat exa fzf nvim rg settings.json shellcheck starship tmux tokei
+all: .bashrc bat exa fzf nvim rg settings.json shellcheck starship tmux tokei .zshrc
 
 .bashrc: .bash_aliases
 ifneq ($(strip $(SYMLINK)),)
@@ -115,4 +115,20 @@ endif
 tokei: rustup
 ifeq ($(strip $(shell test -x $(which tokei) && which tokei)),)
 	@cargo install tokei
+endif
+
+.zshrc: .zsh_aliases
+ifneq ($(strip $(SYMLINK)),)
+	@ln -fs "${MAKEFILE_DIR}/zshrc" "${HOME}/.zshrc"
+else
+	@(test -L "${HOME}/.zshrc" && rm "${HOME}/.zshrc") || true
+	@cp -f "${MAKEFILE_DIR}/zshrc" "${HOME}/.zshrc"
+endif
+
+.zsh_aliases:
+ifneq ($(strip $(SYMLINK)),)
+	@ln -fs "${MAKEFILE_DIR}/zsh_aliases" "${HOME}/.oh-my-zsh/custom/aliases.zsh"
+else
+	@(test -L "${HOME}/.oh-my-zsh/custom/aliases.zsh" && rm "${HOME}/.oh-my-zsh/custom/aliases.zsh") || true
+	@cp -f "${MAKEFILE_DIR}/zsh_aliases" "${HOME}/.oh-my-zsh/custom/aliases.zsh"
 endif
