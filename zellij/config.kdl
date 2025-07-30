@@ -4,8 +4,6 @@ default_layout "owl"
 
 scroll_buffer_size 100000
 
-layout_dir "./layouts/"
-
 show_startup_tips false
 
 ui {

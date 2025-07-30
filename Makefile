@@ -127,7 +127,7 @@ ifneq ($(strip $(SYMLINK)),)
 	@ln -fs "${MAKEFILE_DIR}/zellij" "${HOME}/.config/zellij"
 else
 	@(test -L "${HOME}/.config/zellij" && rm "${HOME}/.config/zellij") || true
-	@cp -r "${MAKEFILE_DIR}/zellij" "${HOME}/.config/zellij"
+	@cp -r "${MAKEFILE_DIR}/zellij" "${HOME}/.config"
 endif
 
 .zshrc: .zsh_aliases
